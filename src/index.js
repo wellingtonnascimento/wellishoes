@@ -1,9 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-const App = () => {
-  return <h1>Wellington Nascimento</h1>;
-};
-
-const container = document.getElementById("root");
-container ? ReactDOM.render(<App />, container) : null;
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root'),
+);
