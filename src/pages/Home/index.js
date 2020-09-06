@@ -5,9 +5,9 @@ import { MdAddShoppingCart } from 'react-icons/md';
 import { formatPrice } from '../../util/format';
 import api from '../../services/api';
 
-import * as CartActions from '../../store/modules/cart/actions';
+import * as CartActions from '../../store/modules/cart/sagas';
 
-import { ProductList } from './styles';
+import { ProductList } from './styledHome';
 
 export default function Home() {
   const [products, setProducts] = useState([]);
