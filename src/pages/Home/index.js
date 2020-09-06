@@ -1,101 +1,62 @@
-import React from 'react';
-import { MdAddShoppingCart } from 'react-icons/md';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { ProductList } from './styledHome';
+import { MdAddShoppingCart } from 'react-icons/md';
+import { formatPrice } from '../../util/format';
+import api from '../../services/api';
+
+import * as CartActions from '../../store/modules/cart/actions';
+
+import { ProductList } from './styles';
 
 export default function Home() {
+  const [products, setProducts] = useState([]);
+  const amount = useSelector((state) =>
+    state.cart.reduce((setAmount, product) => {
+      sumAmount[product.id] = product.amount;
+
+      return sumAmount;
+    }, {}),
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function loadProducts() {
+      const response = await api.get('products');
+
+      const data = response.data.map((product) => ({
+        ...product,
+        priceFormatted: formatPrice(product.price),
+      }));
+
+      setProducts(data);
+    }
+
+    loadProducts();
+  }, []);
+
+  function handleAddProduct(id) {
+    dispatch(CartActions.addToCartRequest(id));
+  }
+
   return (
     <ProductList>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_zoom2.jpg?ts=1571078789&ims=326x"
-          alt="Tênis"
-        />
-        <strong>Tênis muito legal</strong>
-        <span>R$129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#FFF" /> 3
-          </div>
+      {products.map((product) => (
+        <li key={product.id}>
+          <img src={product.image} alt={product.title} />
+          <strong>{product.title}</strong>
+          <span>{product.priceFormatted}</span>
+          <button type="button" onClick={() => handleAddProduct(product.id)}>
+            <div>
+              <MdAddShoppingCart size={16} color="#FFF" />{' '}
+              {amount[product.id] || 0}
+            </div>
 
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_zoom2.jpg?ts=1571078789&ims=326x"
-          alt="Tênis"
-        />
-        <strong>Tênis muito legal</strong>
-        <span>R$129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#FFF" /> 3
-          </div>
-
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_zoom2.jpg?ts=1571078789&ims=326x"
-          alt="Tênis"
-        />
-        <strong>Tênis muito legal</strong>
-        <span>R$129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#FFF" /> 3
-          </div>
-
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_zoom2.jpg?ts=1571078789&ims=326x"
-          alt="Tênis"
-        />
-        <strong>Tênis muito legal</strong>
-        <span>R$129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#FFF" /> 3
-          </div>
-
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_zoom2.jpg?ts=1571078789&ims=326x"
-          alt="Tênis"
-        />
-        <strong>Tênis muito legal</strong>
-        <span>R$129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#FFF" /> 3
-          </div>
-
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_zoom2.jpg?ts=1571078789&ims=326x"
-          alt="Tênis"
-        />
-        <strong>Tênis muito legal</strong>
-        <span>R$129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#FFF" /> 3
-          </div>
-
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
+            <span>ADICIONAR AO CARRINHO</span>
+          </button>
+        </li>
+      ))}
     </ProductList>
   );
 }
