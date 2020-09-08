@@ -11,7 +11,7 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     button {
-      background: #7159c1;
+      background: #4682b4;
       color: #fff;
       border: 0;
       border-radius: 4px;
@@ -20,7 +20,7 @@ export const Container = styled.div`
       text-transform: uppercase;
       transition: background 0.2s;
       &:hover {
-        background: ${darken(0.03, '#7157c1')};
+        background: ${darken(0.03, '#4682b4')};
       }
     }
   }
