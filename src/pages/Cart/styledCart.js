@@ -52,12 +52,14 @@ export const ProductTable = styled.table`
   div {
     display: flex;
     align-items: center;
-    input {
+    span {
       border: 1px solid #ddd;
       border-radius: 4px;
       color: #666;
+      text-align: center;
+      flex: 1;
       padding: 6px;
-      width: 50px;
+      width: 30px;
     }
   }
   button {
