@@ -2,10 +2,16 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { MdShoppingBasket } from 'react-icons/md';
+import { MdShoppingBasket, MdViewList, MdCreate } from 'react-icons/md';
 
 import { formatPrice } from '../../util/format';
-import { Container, Cart, Dropdown } from './stylesHeader';
+import {
+  Container,
+  Cart,
+  Dropdown,
+  Products,
+  CreateProducts,
+} from './stylesHeader';
 
 import logo from '../../assets/images/logoffff.png';
 
@@ -41,6 +47,20 @@ export default function Header() {
       <Link to="/">
         <img src={logo} alt="WelliShoes" height="200" />
       </Link>
+
+      <CreateProducts to="/">
+        <strong>Cria Produto</strong>
+        <div>
+          <MdCreate size={30} color="#FFF" />
+        </div>
+      </CreateProducts>
+
+      <Products to="/products">
+        <strong>Meus Produtos</strong>
+        <div>
+          <MdViewList size={30} color="#FFF" />
+        </div>
+      </Products>
 
       <Cart to="/cart">
         <strong>Meu carrinho</strong>
