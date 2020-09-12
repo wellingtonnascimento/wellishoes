@@ -48,7 +48,7 @@ export default function Header() {
         <img src={logo} alt="WelliShoes" height="200" />
       </Link>
 
-      <CreateProducts to="/">
+      <CreateProducts to="/createproducts">
         <strong>Cria Produto</strong>
         <div>
           <MdCreate size={30} color="#FFF" />
