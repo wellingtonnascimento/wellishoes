@@ -40,8 +40,9 @@ export default function Cart() {
         <thead>
           <tr>
             <th colSpan={2}>Produto</th>
-            <th>QTD</th>
-            <th>SUBTOTAL</th>
+            <th>Quantidade</th>
+            <th>Sub Total</th>
+            <th>Remover</th>
           </tr>
         </thead>
         <tbody>
