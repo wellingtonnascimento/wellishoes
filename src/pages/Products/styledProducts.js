@@ -11,11 +11,12 @@ export const ProductTable = styled.table`
   width: 100%;
   thead th {
     color: #999;
-    text-align: left;
+    text-align: center;
     padding: 12px;
   }
   tbody td {
     padding: 12px;
+    text-align: center;
     border-bottom: 1px solid #eee;
   }
   img {

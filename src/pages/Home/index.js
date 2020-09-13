@@ -26,7 +26,6 @@ export default function Home() {
   useEffect(() => {
     async function loadProducts() {
       const { data } = await api.get('products');
-
       setProducts(data);
     }
 
