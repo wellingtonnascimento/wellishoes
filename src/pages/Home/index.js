@@ -42,7 +42,7 @@ export default function Home() {
         <li key={product.id}>
           <img src={product.image} alt={product.title} />
           <strong>{product.title}</strong>
-          <span>{formatPrice(product.price)}</span>
+          <span>{formatPrice(Number(product.price))}</span>
           <button type="button" onClick={() => handleAddProduct(product)}>
             <div>
               <MdAddShoppingCart size={16} color="#FFF" />{' '}
