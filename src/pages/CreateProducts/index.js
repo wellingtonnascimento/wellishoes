@@ -28,30 +28,27 @@ export default function CreateProducts() {
       imageInputRef.current.addEventListener('change', onImageChange);
   }, [setImageBase64]);
 
-  const handleSubmit = useCallback(
-    async (e) => {
-      if (isLoading) return;
-      e.persist();
-      e.preventDefault();
-      setIsLoading(true);
-      const fields = [...e.target.elements].reduce((fields, input) => {
-        if (input.type === 'submit') {
-          return fields;
-        }
+  const handleSubmit = useCallback(async (e) => {
+    if (isLoading) return;
+    e.persist();
+    e.preventDefault();
+    setIsLoading(true);
+    const fields = [...e.target.elements].reduce((fields, input) => {
+      if (input.type === 'submit') {
+        return fields;
+      }
 
-        return { ...fields, [input.name]: input.value };
-      }, {});
+      return { ...fields, [input.name]: input.value };
+    }, {});
 
-      const { data } = await api.post('products', {
-        ...fields,
-        image: imageBase64,
-      });
-      setIsLoading(false);
-      debugger;
-      e.target.reset();
-    },
-    [setIsLoading],
-  );
+    const { data } = await api.post('products', {
+      ...fields,
+      image: imageBase64,
+    });
+    setIsLoading(false);
+    debugger;
+    e.target.reset();
+  });
 
   return (
     <Container>

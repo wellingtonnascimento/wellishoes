@@ -18,6 +18,16 @@ export default function Products() {
     loadProducts();
   }, [setProducts]);
 
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
+
+    await api.delete(`products/${id}`);
+
+    const productD = [...products];
+    const remove = productD.slice(1, 1);
+    setProducts(remove);
+  };
+
   return (
     <Container>
       <ProductTable>
@@ -48,7 +58,11 @@ export default function Products() {
               </td>
               <td>
                 <button>
-                  <MdDelete size={20} color="#7159c1" />
+                  <MdDelete
+                    size={20}
+                    color="#4682b4"
+                    onClick={(e) => handleDelete(e, product.id)}
+                  />
                 </button>
               </td>
             </tr>
