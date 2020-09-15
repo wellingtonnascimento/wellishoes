@@ -31,7 +31,6 @@ export default function Header() {
     ),
   }));
 
-  console.log(cart);
   function showCartSize() {
     if (!cartSize) {
       return '';
