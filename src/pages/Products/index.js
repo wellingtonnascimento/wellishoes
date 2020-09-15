@@ -37,7 +37,6 @@ export default function Products() {
             <th>Title</th>
             <th>Quantidade</th>
             <th>Valor</th>
-            <th>Remover</th>
           </tr>
         </thead>
 
@@ -55,15 +54,6 @@ export default function Products() {
               </td>
               <td>
                 <span>{formatPrice(product.price)}</span>
-              </td>
-              <td>
-                <button>
-                  <MdDelete
-                    size={20}
-                    color="#4682b4"
-                    onClick={(e) => handleDelete(e, product.id)}
-                  />
-                </button>
               </td>
             </tr>
           ))}
